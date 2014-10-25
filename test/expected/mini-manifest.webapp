@@ -1,0 +1,10 @@
+{
+  "name": "My Firefox App",
+  "version": "1.0.0",
+  "developer": {
+    "name": "App Developer",
+    "url": "http://example.com/"
+  },
+  "package_path": "http://www.example.com/package.zip",
+  "size": 764
+}

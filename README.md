@@ -1,6 +1,6 @@
 # grunt-firefox-package
 
-> Generates a package.zip and mini manifest for your app.
+> Generate a package.zip and mini manifest for your app.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
@@ -17,9 +17,6 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-firefox-package');
 ```
 
-## The "firefox_package" task
-
-### Overview
 In your project's Gruntfile, add a section named `firefox_package` to the data object passed into `grunt.initConfig()`.
 
 ```js
@@ -27,56 +24,56 @@ grunt.initConfig({
   firefox_package: {
     options: {
       // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
+    }
   },
 });
 ```
+## The "firefox_package" task
+
+### Overview
+
+To distribute a Firefox OS 'packaged' app outside of the Firefox store, you need two things:
+* A `package.zip` that contains your app source code and manifest.
+* A `mini-manifest.webapp` file that tells the system where `package.zip` can be downloaded, and also some basic info like the app's name.
+
+Making the mini manifest is finicky, because it requires information to be duplicated from the main manifest, and installation will fail if those duplicated values don't match exactly [(1)][1].
+
+Furthermore, it requires some additional information (such as the package file size) that mean it't not just a copy/paste job. This task attempts to automate the process.
+
+This task is intended to interoperate with [grunt-firefox-manifest][2], such that you can use `firefox-manifest` to build your main manifest from your `package.json`, then use `firefox-package` to build the final distributable using the generated  manifest.
 
 ### Options
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
+#### source
+Type: `String` Default value: `'dist'`  
 
-A string value that is used to do something with whatever.
+Directory containing your built application source code and `manifest.webapp`.
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
+#### outputPackage
+Type: `String` Default value: `'dist/packaged/package.zip'`
 
-A string value that is used to do something else with whatever else.
+Where to place the output package file in your project tree.
+
+#### outputMiniManifest
+Type: `String` Default value: `'dist/packaged/mini-manifest.webapp'`
+
+Where to place the output mini manifest in your project tree.
+
+#### packageUrl
+Type: `String` Default value: `'https://example.com/package.zip'`
+
+Location from which you plan to distribute your `package.zip` file.
 
 ### Usage Examples
-
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
-
-```js
-grunt.initConfig({
-  firefox_package: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
 
 ```js
 grunt.initConfig({
   firefox_package: {
     options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+      source: 'dist',
+      outputPackage: 'dist/packaged/package.zip',
+      outputMiniManifest: 'dist/packaged/mini-manifest.webapp',
+      packageUrl: 'https://example.com/package.zip',
     },
   },
 });
@@ -87,3 +84,6 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 _(Nothing yet)_
+
+[1]: https://developer.mozilla.org/en-US/Marketplace/Options/Self_publishing#Mini-manifest_fields
+[2]: https://www.npmjs.org/package/grunt-firefox-manifest

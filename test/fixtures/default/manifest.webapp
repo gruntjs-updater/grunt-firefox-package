@@ -1,0 +1,20 @@
+{
+  "name": "My Firefox App",
+  "description": "My Firefox App description",
+  "version": "1.0.0",
+  "permissions": {
+    "geolocation": {
+      "description": "To track your location."
+    }
+  },
+  "icons": {
+    "128": "/img/icon-128.png",
+    "512": "/img/icon-512.png"
+  },
+  "appcache_path": "/manifest.appcache",
+  "launch_path": "/",
+  "developer": {
+    "name": "App Developer",
+    "url": "http://example.com/"
+  }
+}

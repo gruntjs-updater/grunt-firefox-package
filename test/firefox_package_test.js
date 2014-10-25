@@ -1,48 +1,39 @@
 'use strict';
 
 var grunt = require('grunt');
+var JSZip = require('jszip');
 
-/*
-  ======== A Handy Little Nodeunit Reference ========
-  https://github.com/caolan/nodeunit
+function assertPackagesEqual(test, actual, expected) {
+  // TODO: figure out how to compare ZIPs in a platform-independent manner.
+  // var a = grunt.file.read(actual);
+  // var e = grunt.file.read(expected);
+  // test.equal(a, e);
+}
 
-  Test methods:
-    test.expect(numAssertions)
-    test.done()
-  Test assertions:
-    test.ok(value, [message])
-    test.equal(actual, expected, [message])
-    test.notEqual(actual, expected, [message])
-    test.deepEqual(actual, expected, [message])
-    test.notDeepEqual(actual, expected, [message])
-    test.strictEqual(actual, expected, [message])
-    test.notStrictEqual(actual, expected, [message])
-    test.throws(block, [error], [message])
-    test.doesNotThrow(block, [error], [message])
-    test.ifError(value)
-*/
+function assertMiniManifestsEqual(test, actual, expected) {
+  var a = grunt.file.readJSON(actual);
+  var e = grunt.file.readJSON(expected);
 
+  test.equal(JSON.stringify(a), JSON.stringify(e),
+    'The generated manifest does not match the expectation'
+  );
+}
+
+function testEqual(test, outputPackage, outputMiniManifest) {
+  test.expect(1);
+  assertMiniManifestsEqual(test, outputMiniManifest,
+    'test/expected/mini-manifest.webapp');
+  test.done();
+}
 exports.firefox_package = {
-  setUp: function(done) {
-    // setup here if necessary
-    done();
+
+  basic: function(test) {
+    testEqual(test, 'tmp/basic/package.zip',
+      'tmp/basic/mini-manifest.webapp');
   },
-  default_options: function(test) {
-    test.expect(1);
 
-    var actual = grunt.file.read('tmp/default_options');
-    var expected = grunt.file.read('test/expected/default_options');
-    test.equal(actual, expected, 'should describe what the default behavior is.');
-
-    test.done();
-  },
-  custom_options: function(test) {
-    test.expect(1);
-
-    var actual = grunt.file.read('tmp/custom_options');
-    var expected = grunt.file.read('test/expected/custom_options');
-    test.equal(actual, expected, 'should describe what the custom option(s) behavior is.');
-
-    test.done();
+  nonStandardNames: function(test) {
+    testEqual(test, 'tmp/nonStandardNames/alternative-package.zip',
+      'tmp/nonStandardNames/alternative-mini-manifest.webapp');
   },
 };

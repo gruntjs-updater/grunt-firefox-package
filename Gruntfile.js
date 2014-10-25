@@ -30,20 +30,18 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     firefox_package: {
-      default_options: {
+      basic: {
         options: {
-        },
-        files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123']
+          source: 'test/fixtures/default',
+          outputPackage: 'tmp/basic/package.zip',
+          outputMiniManifest: 'tmp/basic/mini-manifest.webapp',
         }
       },
-      custom_options: {
+      nonStandardNames: {
         options: {
-          separator: ': ',
-          punctuation: ' !!!'
-        },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123']
+          source: 'test/fixtures/default',
+          outputPackage: 'tmp/nonStandardNames/alternative-package.zip',
+          outputMiniManifest: 'tmp/nonStandardNames/alternative-mini-manifest.webapp',
         }
       }
     },
