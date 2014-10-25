@@ -1,0 +1,45 @@
+{
+  "name": "grunt-firefox-package",
+  "description": "Generates a package.zip and mini manifest for your app.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/danhawkes/grunt-firefox-package",
+  "author": {
+    "name": "Dan Hawkes",
+    "email": "dan@danhawkes.co.uk"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danhawkes/grunt-firefox-package.git"
+  },
+  "bugs": {
+    "url": "https://github.com/danhawkes/grunt-firefox-package/issues"
+  },
+  "licenses": [
+    {
+      "type": "Apache",
+      "url": "https://github.com/danhawkes/grunt-firefox-package/blob/master/LICENSE-Apache"
+    },
+    {
+      "type": "2.0",
+      "url": "https://github.com/danhawkes/grunt-firefox-package/blob/master/LICENSE-2.0"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "^0.9.2",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-nodeunit": "^0.3.3",
+    "grunt": "~0.4.5"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.5"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
