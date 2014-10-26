@@ -34,9 +34,13 @@
     "grunt": "~0.4.5"
   },
   "keywords": [
-    "gruntplugin", "firefox", "manifest", "package"
+    "gruntplugin",
+    "firefox",
+    "manifest",
+    "package"
   ],
   "dependencies": {
+    "chalk": "^0.5.1",
     "jszip": "^2.4.0"
   }
 }

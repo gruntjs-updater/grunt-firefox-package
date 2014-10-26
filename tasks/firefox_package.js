@@ -4,6 +4,7 @@
 var fs = require('fs');
 var path = require('path');
 var JSZip = require('jszip');
+var chalk = require('chalk');
 
 module.exports = function(grunt) {
 
@@ -38,6 +39,10 @@ module.exports = function(grunt) {
       grunt.log.ok();
     });
 
+  function logFileCreated(filepath) {
+    grunt.log.writeln('File ' + chalk.cyan(filepath) + ' created.');
+  }
+
   function ensureOutputDirectoriesExist(opt) {
     [opt.outputPackage, opt.outputMiniManifest].forEach(
       function(item) {
@@ -46,7 +51,6 @@ module.exports = function(grunt) {
   }
 
   function generateZip(opt) {
-    grunt.log.writeln('Creating "' + opt.outputPackage + '"...');
 
     // Build a map of input and output files, where the inputs are
     // relative to the working directory, and the outputs are relative
@@ -60,7 +64,7 @@ module.exports = function(grunt) {
     filesAndDirs.forEach(function(item) {
       var src = item.src[0];
       var dest = item.dest;
-      grunt.log.writeln('  ' + src + ' -> ' + dest);
+      grunt.verbose.writeln('  ' + src + ' -> ' + dest);
       if (grunt.file.isDir(src)) {
         zip.folder(dest);
       } else if (grunt.file.isFile(src)) {
@@ -73,14 +77,14 @@ module.exports = function(grunt) {
     });
     fs.writeFileSync(opt.outputPackage, output);
 
+    logFileCreated(opt.outputPackage);
+
     // Get the zip size
     var stat = fs.statSync(opt.outputPackage);
     return stat.size;
   }
 
   function generateMiniManifest(opt, packageSize) {
-    grunt.log.writeln('Creating "' + opt.outputMiniManifest +
-      '"...');
 
     var manifest = grunt.file.readJSON(path.join(opt.source,
       'manifest.webapp'));
@@ -105,5 +109,7 @@ module.exports = function(grunt) {
 
     fs.writeFileSync(opt.outputMiniManifest, JSON.stringify(
       miniManifest, null, '  '));
+
+    logFileCreated(opt.outputMiniManifest);
   }
 };
