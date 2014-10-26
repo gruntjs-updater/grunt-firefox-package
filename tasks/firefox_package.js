@@ -60,7 +60,7 @@ module.exports = function(grunt) {
     filesAndDirs.forEach(function(item) {
       var src = item.src[0];
       var dest = item.dest;
-      grunt.log.writeln('  ' + src + ' -> ' + dest);
+      grunt.verbose.writeln('  ' + src + ' -> ' + dest);
       if (grunt.file.isDir(src)) {
         zip.folder(dest);
       } else if (grunt.file.isFile(src)) {
