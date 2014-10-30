@@ -21,12 +21,7 @@ In your project's Gruntfile, add a section named `firefoxPackage` to the data ob
 
 ```js
 grunt.initConfig({
-  firefoxPackage: {
-    options: {
-    }
-    default: {
-    }
-  },
+  firefoxPackage: {...},
 });
 ```
 ## The 'firefoxPackage' task
@@ -39,7 +34,7 @@ To distribute a Firefox OS 'packaged' app outside of the Firefox store, you need
 
 Making the mini manifest is finicky, because it requires information to be duplicated from the main manifest, and installation will fail if those duplicated values don't match exactly [(1)][1].
 
-Furthermore, it requires some additional information (such as the package file size) that mean it't not just a copy/paste job. This task attempts to automate the process.
+Furthermore, it requires some additional information (such as the package file size) that mean it's not a simple copy/paste job. This task attempts to automate the process.
 
 This task is intended to interoperate with [grunt-firefox-manifest][2], such that you can use `firefox-manifest` to build your main manifest from your `package.json`, then use `firefox-package` to build the final distributable using the generated  manifest.
 
@@ -71,27 +66,43 @@ Location from which you plan to distribute your `package.zip` file.
 
 ### Usage Examples
 
+We have a `build` task that compiles and minifies our CSS and JS into a directory called `dist`. We want to include the contents of `dist` in the package, and create the zip and manifest in `packaged`.
+
+```js
+grunt.registerTask('build', [
+  ...
+  'firefoxPackage:dist'
+]);
+```
+
 ```js
 grunt.initConfig({
   firefoxPackage: {
-    options: {
-      source: 'dist',
-      outputPackage: 'dist/packaged/package.zip',
-      outputMiniManifest: 'dist/packaged/mini-manifest.webapp',
-      packageUrl: 'https://example.com/package.zip',
-    },
-    default: {
-      // Target-specific file lists and/or options go here.
+    dist: {
+      options: {
+        source: 'dist',
+        outputPackage: 'packaged/package.zip',
+        outputMiniManifest: 'packaged/mini-manifest.webapp',
+        packageUrl: 'https://example.com/package.zip',
+      }
     }
-  },
+  }
 });
 ```
 
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+Pull requests/issues are welcome.
 
 ## Release History
-_(Nothing yet)_
+0.1.0
+  * Initial release.  
+
+0.2.0
+  * Rename task `firefox_package`->`firefoxPackage`.
+
+0.3.0
+  * Remove default 'options'; now all are required.
+  * Fix misc issues in readme.
 
 [1]: https://developer.mozilla.org/en-US/Marketplace/Options/Self_publishing#Mini-manifest_fields
 [2]: https://www.npmjs.org/package/grunt-firefox-manifest
