@@ -11,12 +11,25 @@ module.exports = function(grunt) {
     'Generates a package.zip and mini manifest for your app.',
     function() {
 
-      var opt = this.options({
-        "source": 'dist',
-        "packageUrl": "http://www.example.com/package.zip",
-        "outputPackage": "dist/packaged/package.zip",
-        "outputMiniManifest": "dist/packaged/mini-manifest.webapp"
-      });
+      var opt = this.options();
+
+      if (!opt.source) {
+        grunt.fail.warn(
+          '\'source\' property was not found in options.');
+      }
+      if (!opt.packageUrl) {
+        grunt.fail.warn(
+          '\'packageUrl\' property was not found in options.');
+      }
+      if (!opt.outputPackage) {
+        grunt.fail.warn(
+          '\'outputPackage\' property was not found in options.');
+      }
+      if (!opt.outputMiniManifest) {
+        grunt.fail.warn(
+          '\'outputMiniManifest\' property was not found in options.'
+        );
+      }
 
       ensureOutputDirectoriesExist(opt);
       var zipSize = generateZip(opt);

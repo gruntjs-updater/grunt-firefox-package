@@ -23,7 +23,8 @@ In your project's Gruntfile, add a section named `firefoxPackage` to the data ob
 grunt.initConfig({
   firefoxPackage: {
     options: {
-      // Task-specific options go here.
+    }
+    default: {
     }
   },
 });
@@ -45,22 +46,26 @@ This task is intended to interoperate with [grunt-firefox-manifest][2], such tha
 ### Options
 
 #### source
-Type: `String` Default value: `'dist'`  
+Type: `String` Default value: `undefined`  
+Example: `'dist'`
 
 Directory containing your built application source code and `manifest.webapp`.
 
 #### outputPackage
-Type: `String` Default value: `'dist/packaged/package.zip'`
+Type: `String` Default value: `undefined`  
+Example: `'dist/packaged/package.zip'`
 
 Where to place the output package file in your project tree.
 
 #### outputMiniManifest
-Type: `String` Default value: `'dist/packaged/mini-manifest.webapp'`
+Type: `String` Default value: `undefined`  
+Example: `'dist/packaged/mini-manifest.webapp'`
 
 Where to place the output mini manifest in your project tree.
 
 #### packageUrl
-Type: `String` Default value: `'https://example.com/package.zip'`
+Type: `String` Default value: `undefined`  
+Example: `'https://example.com/package.zip'`
 
 Location from which you plan to distribute your `package.zip` file.
 
@@ -75,6 +80,9 @@ grunt.initConfig({
       outputMiniManifest: 'dist/packaged/mini-manifest.webapp',
       packageUrl: 'https://example.com/package.zip',
     },
+    default: {
+      // Target-specific file lists and/or options go here.
+    }
   },
 });
 ```
