@@ -29,10 +29,11 @@ module.exports = function(grunt) {
     },
 
     // Configuration to be run (and then tested).
-    firefox_package: {
+    firefoxPackage: {
       basic: {
         options: {
           source: 'test/fixtures/default',
+          packageUrl: 'http://www.example.com/package.zip',
           outputPackage: 'tmp/basic/package.zip',
           outputMiniManifest: 'tmp/basic/mini-manifest.webapp',
         }
@@ -40,6 +41,7 @@ module.exports = function(grunt) {
       nonStandardNames: {
         options: {
           source: 'test/fixtures/default',
+          packageUrl: 'http://www.example.com/package.zip',
           outputPackage: 'tmp/nonStandardNames/alternative-package.zip',
           outputMiniManifest: 'tmp/nonStandardNames/alternative-mini-manifest.webapp',
         }
@@ -63,7 +65,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'firefox_package', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'firefoxPackage', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);

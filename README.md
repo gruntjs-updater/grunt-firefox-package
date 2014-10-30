@@ -17,18 +17,18 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-firefox-package');
 ```
 
-In your project's Gruntfile, add a section named `firefox_package` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `firefoxPackage` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
-  firefox_package: {
+  firefoxPackage: {
     options: {
       // Task-specific options go here.
     }
   },
 });
 ```
-## The "firefox_package" task
+## The 'firefoxPackage' task
 
 ### Overview
 
@@ -68,7 +68,7 @@ Location from which you plan to distribute your `package.zip` file.
 
 ```js
 grunt.initConfig({
-  firefox_package: {
+  firefoxPackage: {
     options: {
       source: 'dist',
       outputPackage: 'dist/packaged/package.zip',

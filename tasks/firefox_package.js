@@ -7,7 +7,7 @@ var JSZip = require('jszip');
 
 module.exports = function(grunt) {
 
-  grunt.registerMultiTask('firefox_package',
+  grunt.registerMultiTask('firefoxPackage',
     'Generates a package.zip and mini manifest for your app.',
     function() {
 

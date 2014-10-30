@@ -25,7 +25,7 @@ function testEqual(test, outputPackage, outputMiniManifest) {
     'test/expected/mini-manifest.webapp');
   test.done();
 }
-exports.firefox_package = {
+exports.firefoxPackage = {
 
   basic: function(test) {
     testEqual(test, 'tmp/basic/package.zip',
