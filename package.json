@@ -14,10 +14,12 @@
   "bugs": {
     "url": "https://github.com/danhawkes/grunt-firefox-package/issues"
   },
-  "licenses": [{
-    "type": "Apache 2.0",
-    "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
-  }],
+  "licenses": [
+    {
+      "type": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  ],
   "engines": {
     "node": ">= 0.8.0"
   },
@@ -31,7 +33,7 @@
     "grunt": "~0.4.5"
   },
   "peerDependencies": {
-    "grunt": "~0.4.5"
+    "grunt": ">=0.4.0"
   },
   "keywords": [
     "gruntplugin",
